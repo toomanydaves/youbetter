@@ -1,90 +1,20 @@
-{% load static %}
+{% extends "youbetter/base.html" %}
 
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <title>{% block page-title %}You:Better{% endblock %}</title>
-        <link
-            rel="stylesheet"
-            href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
-            integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
-            crossorigin="anonymous">
-        <link
-            rel="stylesheet"
-            href="https://fonts.googleapis.com/css?family=Abril+Fatface"
-        >
-        <!--
-        /**
-         * @license
-         * MyFonts Webfont Build ID 3524418, 2018-02-10T18:18:37-0500
-         * 
-         * The fonts listed in this notice are subject to the End User License
-         * Agreement(s) entered into by the website owner. All other parties are 
-         * explicitly restricted from using the Licensed Webfonts(s).
-         * 
-         * You may obtain a valid license at the URLs below.
-         * 
-         * Webfont: SheldrakeJNL by Jeff Levine
-         * URL: https://www.myfonts.com/fonts/jnlevine/sheldrake/regular/
-         * Copyright: &#xFF69; 2006 by Jeffrey N. Levine.  All rights reserved.
-         * Licensed pageviews: 20,000
-         * 
-         * Webfont: LookScript-Reg by insigne
-         * URL: https://www.myfonts.com/fonts/insigne/look/script-regular/
-         * Copyright: Copyright 2015 Adobe Systems Incorporated. All rights reserved.
-         * Licensed pageviews: 10,000
-         * 
-         * 
-         * License: https://www.myfonts.com/viewlicense?type=web&buildid=3524418
-         * 
-         * © 2018 MyFonts Inc
-        */
-        -->
-        <link
-            rel="stylesheet" 
-            href="{% static "/youbetter/css/my-fonts.css" %}">
-        <style>
-            .bg-dot-matrix {
-                background: url("{% static "/youbetter/images/dot-grey.png" %}");
-                height: 100%;
-            }
-            .text-cursive {
-                font-family: 'LookScript-Reg', cursive;
-            }
-            .text-fat-serif {
-                font-family: 'Abril Fatface', cursive;
-            }
-        </style>
-        {% block page-styles %}{% endblock %}
-    </head>
-    <body>
-        <div
-            id="bg"
-            class="bg-wallpaper"
-            style="
-                position: fixed;
-                height: 100%;
-                width: 100%;
-                z-index: -1;
-            "
-        >{% block bg %}{% endblock %}</div>
-        <div id="content">{% block content %}{% endblock %}</div>
-        <div id="footer">{% block footer %}{% endblock %}</div>
-        <script
-            src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-            integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-            crossorigin="anonymous"
-        ></script>
-        <script
-            src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-            integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
-            crossorigin="anonymous"
-        ></script>
-        <script
-            src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
-            integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
-            crossorigin="anonymous"
-        ></script>
-        {% block page-scripts %}{% endblock %}
-    </body>
-</html>
+{% block page-styles %}
+<style>
+</style>
+{% endblock %}
+
+{% block content %}
+<header>
+    <h1><span style="font-weight: normal;">YOU</span>:BETTER</h1>
+    <h6>Make the most of now.</h6>
+</header>
+{% endblock %}
+
+{% block page-scripts %}
+    <script>
+        {% include "youbetter/home/_journal.js" %}
+        {% include "youbetter/home/_tasks.js" %}
+    </script>
+{% endblock %}
