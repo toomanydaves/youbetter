@@ -6,6 +6,7 @@ _.env.prod_
 
     DEBUG=0
     SECRET_KEY=your-secret-key
+    FERNET_KEY=url-safe-base64-encoded-32-byte-key
     DJANGO_ALLOWED_HOSTS=your.domain localhost 127.0.0.1 [::1]
     SQL_ENGINE=django.db.backends.postgresql
     SQL_DATABASE=your-db
@@ -20,6 +21,11 @@ _.env.prod.db_
     POSTGRES_USER=your-user
     POSTGRES_PASSWORD=your-password
     POSTGRES_DB=your-db
+
+_.env.prod.nosql_
+
+    COUCHDB_USER=your-user
+    COUCHDB_PASSWORD=your-password
 
 ## Commands
 

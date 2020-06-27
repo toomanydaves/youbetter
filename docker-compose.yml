@@ -12,6 +12,7 @@ services:
       - ./.env.dev
     depends_on:
       - db
+      - nosql
 
   db:
     image: postgres:12.0-alpine
@@ -22,5 +23,17 @@ services:
       - POSTGRES_PASSWORD=youbetter
       - POSTGRES_DB=youbetter_dev
 
+  nosql:
+    build: ./couchdb
+    volumes:
+      - couchdb_data:/opt/couchdb/data/
+    ports:
+      - 5984:5984
+    environment:
+      - COUCHDB_USER=youbetter
+      - COUCHDB_PASSWORD=youbetter
+      - COUCH_PERUSER=true
+
 volumes:
   postgres_data:
+  couchdb_data:

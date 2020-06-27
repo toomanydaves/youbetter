@@ -23,6 +23,15 @@ services:
     env_file:
       - ./.env.prod.db
 
+  nosql:
+    build: ./couchdb
+    volumes:
+      - couchdb_data:/opt/couchdb/data/
+    expose:
+      - 5984
+    env_file:
+      - ./.env.prod.nosql
+
   nginx:
     build: ./nginx
     volumes:
@@ -32,8 +41,10 @@ services:
       - 9001:80
     depends_on:
       - web
+      - couchdb
 
 volumes:
   postgres_data:
+  couchdb_data:
   static_volume:
   media_volume:

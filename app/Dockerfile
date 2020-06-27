@@ -8,9 +8,9 @@ WORKDIR /usr/src/app
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
 
-# install psycopg2 dependencies
+# install psycopg2 & cryptographydependencies
 RUN apk update \
-    && apk add postgresql-dev gcc python3-dev musl-dev
+    && apk add postgresql-dev gcc python3-dev musl-dev libffi-dev openssl-dev
 
 # install dependencies
 RUN pip install --upgrade pip
