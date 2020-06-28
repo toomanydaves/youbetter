@@ -76,20 +76,21 @@ WSGI_APPLICATION = 'youbetter.wsgi.application'
 
 DATABASES = {
     'default': {
-        "ENGINE": os.environ.get("SQL_ENGINE", "django.db.backends.sqlite3"),
-        "NAME": os.environ.get("SQL_DATABASE", os.path.join(BASE_DIR, 'db.sqlite3')),
-        "USER": os.environ.get("SQL_USER", "user"),
-        "PASSWORD": os.environ.get("SQL_PASSWORD", "password"),
-        "HOST": os.environ.get("SQL_HOST", "localhost"),
-        "PORT": os.environ.get("SQL_PORT", "5432"),
+        'ENGINE': os.environ.get('SQL_ENGINE', 'django.db.backends.postgresql'),
+        'NAME': os.environ.get('SQL_DATABASE', 'youbetter_dev'),
+        'USER': os.environ.get('SQL_USER', 'youbetter'),
+        'PASSWORD': os.environ.get('SQL_PASSWORD', 'youbetter'),
+        'HOST': os.environ.get('SQL_HOST', 'db'),
+        'PORT': os.environ.get('SQL_PORT', '5432'),
     }
 }
 
 # CouchDB
 NOSQL = {
-    'USER': os.environ.get('NOSQL_USER', 'user'),
-    'PASSWORD': os.environ.get('NOSQL_PASSWORD', 'password'),
-    'URL': os.environ.get('NOSQL_URL', 'localhost')
+    'USER': os.environ.get('NOSQL_USER', 'youbetter'),
+    'PASSWORD': os.environ.get('NOSQL_PASSWORD', 'youbetter'),
+    'HOST': os.environ.get('NOSQL_HOST', 'nosql:5984'),
+    'REMOTE': os.environ.get('NOSQL_REMOTE', 'localhost:5984')
 }
 
 #AUTHENTICATION

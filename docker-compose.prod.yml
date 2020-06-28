@@ -41,7 +41,7 @@ services:
       - 9001:80
     depends_on:
       - web
-      - couchdb
+      - nosql
 
 volumes:
   postgres_data:

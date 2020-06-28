@@ -15,6 +15,9 @@ _.env.prod_
     SQL_HOST=db
     SQL_PORT=5432
     DATABASE=postgres
+    NOSQL_USER=your-user
+    NOSQL_PASSWORD=your-password
+    NOSQL_HOST=nosql:5984
 
 _.env.prod.db_
 
