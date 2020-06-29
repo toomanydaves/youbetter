@@ -24,7 +24,9 @@ services:
       - ./.env.prod.db
 
   nosql:
-    build: ./couchdb
+    build:
+      context: ./couchdb
+      dockerfile: Dockerfile.prod
     volumes:
       - couchdb_data:/opt/couchdb/data/
     expose:

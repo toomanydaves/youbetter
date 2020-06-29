@@ -1,0 +1,6 @@
+[couchdb]
+single_node = true
+
+[couch_peruser]
+enable = true
+delete_dbs = true

@@ -87,7 +87,22 @@
             crossorigin="anonymous"
         ></script>
         <script src="{% static "/youbetter/js/pouchdb-7.1.1.js" %}"></script>
-        <script>var db = new PouchDB('youbetter');</script>
+        {% if remote_db %}
+            <script>
+                var db = new PouchDB('youbetter_' + '{{ username }}');
+                var url = '{{ remote_db }}';
+                var options = { live: true, retry: true };
+
+                // Do one way, one-off sync from the server until completion...
+                db.replicate.from(url).on('complete', function () {
+                    // ... then two-way, continuous, retriable sync
+                    // TODO Add error handling
+                    db.sync(url, { live: true, retry: true });
+                });
+            </script>
+        {% else %}
+            <script>var db = new PouchDB('youbetter');</script>
+        {% endif %}
         {% block page-scripts %}{% endblock %}
     </body>
 </html>
