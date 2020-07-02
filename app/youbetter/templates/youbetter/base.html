@@ -68,9 +68,22 @@
                 width: 100%;
                 z-index: -1;
             "
-        >{% block bg %}{% endblock %}</div>
-        <div id="content">{% block content %}{% endblock %}</div>
-        <div id="footer">{% block footer %}{% endblock %}</div>
+        >{% block bg-content %}{% endblock %}</div>
+        <header id="page-header">
+            {% block header-content %}
+                <h1><span style="font-weight: normal;">YOU</span>:BETTER</h1>
+                <h6>Make the most of now.</h6>
+            {% endblock %}
+        </header>
+        <div id="page" style="position: relative;">
+            <div id="page-overlay" style="position: absolute;">
+                {% block page-overlay-content %}{% endblock %}
+            </div>
+            <div id="page-content">
+                {% block page-content %}{% endblock %}
+            </div>
+        </div>
+        <footer id="page-footer">{% block footer %}{% endblock %}</footer>
         <script
             src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
             integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
@@ -87,21 +100,29 @@
             crossorigin="anonymous"
         ></script>
         <script src="{% static "/youbetter/js/pouchdb-7.1.1.js" %}"></script>
+        <script>
+            var dbReady = new $.Deferred();
+            var db, sync;
+        </script>
         {% if remote_db %}
             <script>
-                var db = new PouchDB('youbetter_' + '{{ username }}');
-                var url = '{{ remote_db }}';
-                var options = { live: true, retry: true };
+                // TODO Ensure personal data is protected on a shared computer
+                db = new PouchDB('youbetter_' + '{{ username }}');
 
-                // Do one way, one-off sync from the server until completion...
-                db.replicate.from(url).on('complete', function () {
-                    // ... then two-way, continuous, retriable sync
-                    // TODO Add error handling
-                    db.sync(url, { live: true, retry: true });
+                db.replicate.from('{{ remote_db }}').on('complete', function () {
+                    sync = db.sync('{{ remote_db }}', { live: true, retry: true });
+                    dbReady.resolve();
+                }).on('error', function (err) {
+                    // Work offline if remote isn't available
+                    dbReady.resolve();
                 });
+                
             </script>
         {% else %}
-            <script>var db = new PouchDB('youbetter');</script>
+            <script>
+                db = new PouchDB('youbetter');
+                dbReady.resolve();
+            </script>
         {% endif %}
         {% block page-scripts %}{% endblock %}
     </body>

@@ -1,3 +1,4 @@
+// TODO in sync, use a view to group tasks by date
 var listEl = document.createElement('ul');
 var itemTextEl = document.createElement('input');
 var today = new Date().toISOString().slice(0, 10);
@@ -67,4 +68,4 @@ db.allDocs({
     });
 });
 
-document.body.append(itemTextEl, listEl);
+document.getElementById('page-content').append(itemTextEl, listEl);
