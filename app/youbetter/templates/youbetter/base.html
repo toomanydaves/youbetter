@@ -73,6 +73,11 @@
             {% block header-content %}
                 <h1><span style="font-weight: normal;">YOU</span>:BETTER</h1>
                 <h6>Make the most of now.</h6>
+                {% if username %}
+                    <div style="position: absolute; top: 0; right: 0;">
+                        <a href='/logout'>Log out</a>
+                    </div>
+                {% endif %}
             {% endblock %}
         </header>
         <div id="page" style="position: relative;">
