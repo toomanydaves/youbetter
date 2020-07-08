@@ -25,6 +25,7 @@ dbReady.done(function () {
         document.getElementById('page-content').append(entryEl, statusEl);
 
         entryEl.style.height = entryEl.scrollHeight + 'px';
+        entryEl.focus();
 
         // If there's syncing and a change has been pulled from remote,
         // update the textarea
